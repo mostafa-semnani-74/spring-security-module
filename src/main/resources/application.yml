@@ -11,3 +11,6 @@ spring:
     hibernate:
       ddl-auto: create-drop
 # ----------------------------------------------------------------------
+
+token:
+  time-to-live: 5 # minute
