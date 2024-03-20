@@ -8,6 +8,7 @@ import ir.mostafa.semnani.springsecuritymodule.security.model.entity.AppRole;
 import ir.mostafa.semnani.springsecuritymodule.security.model.service.AppPermissionService;
 import ir.mostafa.semnani.springsecuritymodule.security.model.service.AppRoleService;
 import ir.mostafa.semnani.springsecuritymodule.security.model.service.AppUserService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -17,19 +18,12 @@ import java.util.List;
 import java.util.Set;
 
 @Component
+@RequiredArgsConstructor
 public class SeedData implements CommandLineRunner {
     private final AppUserService appUserService;
     private final AppPermissionService appPermissionService;
     private final AppRoleService appRoleService;
     private final PasswordEncoder passwordEncoder;
-
-    @Autowired
-    public SeedData(AppUserService appUserService, AppPermissionService appPermissionService, AppRoleService appRoleService, PasswordEncoder passwordEncoder) {
-        this.appUserService = appUserService;
-        this.appPermissionService = appPermissionService;
-        this.appRoleService = appRoleService;
-        this.passwordEncoder = passwordEncoder;
-    }
 
     @Override
     public void run(String... args) {
@@ -56,18 +50,27 @@ public class SeedData implements CommandLineRunner {
         appUserService.save(user);
 
         List<AppRole> appRoles = appRoleService.findAll();
-        for (AppRole appRole: appRoles) {
+        for (AppRole appRole : appRoles) {
             if (appRole.getName().equals(adminAppRole.getName()))
                 adminAppRole.setId(appRole.getId());
             else if (appRole.getName().equals(userAppRole.getName()))
                 userAppRole.setId(appRole.getId());
         }
 
+        // create person read permission for person
+        AppPermission personReadUser = new AppPermission();
+        personReadUser.setName(AppUserPermission.PERSON_READ.getPermission());
+        appPermissionService.save(personReadUser, userAppRole.getId());
 
+        // create person read permission for admin
         AppPermission personRead = new AppPermission();
         personRead.setName(AppUserPermission.PERSON_READ.getPermission());
+        appPermissionService.save(personRead, adminAppRole.getId());
 
-        appPermissionService.save(personRead, userAppRole.getId());
+        // create person write permission for admin
+        AppPermission personWrite = new AppPermission();
+        personWrite.setName(AppUserPermission.PERSON_WRITE.getPermission());
+        appPermissionService.save(personWrite, adminAppRole.getId());
 
     }
 }
