@@ -1,6 +1,6 @@
 package ir.mostafa.semnani.springsecuritymodule.security.filter;
 
-import ir.mostafa.semnani.springsecuritymodule.security.model.AppUserDetailsService;
+import ir.mostafa.semnani.springsecuritymodule.security.model.service.AppUserDetailsService;
 import ir.mostafa.semnani.springsecuritymodule.security.model.service.JwtService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

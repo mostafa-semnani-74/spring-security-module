@@ -3,7 +3,7 @@ package ir.mostafa.semnani.springsecuritymodule.security.model.service;
 import ir.mostafa.semnani.springsecuritymodule.security.model.entity.AppPermission;
 import ir.mostafa.semnani.springsecuritymodule.security.model.entity.AppRole;
 import ir.mostafa.semnani.springsecuritymodule.security.model.repository.AppPermissionRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,15 +13,10 @@ import java.util.Set;
 
 @Service
 @Transactional
+@RequiredArgsConstructor
 public class AppPermissionService {
     private final AppPermissionRepository appPermissionRepository;
     private final AppRoleService appRoleService;
-
-    @Autowired
-    public AppPermissionService(AppPermissionRepository appPermissionRepository, AppRoleService appRoleService) {
-        this.appPermissionRepository = appPermissionRepository;
-        this.appRoleService = appRoleService;
-    }
 
     @Transactional(readOnly = true)
     public List<AppPermission> findAll() {

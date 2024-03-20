@@ -2,7 +2,7 @@ package ir.mostafa.semnani.springsecuritymodule.security.model.service;
 
 import ir.mostafa.semnani.springsecuritymodule.security.model.entity.AppRole;
 import ir.mostafa.semnani.springsecuritymodule.security.model.repository.AppRoleRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,13 +13,9 @@ import java.util.Set;
 
 @Service
 @Transactional
+@RequiredArgsConstructor
 public class AppRoleService {
     private final AppRoleRepository appRoleRepository;
-
-    @Autowired
-    public AppRoleService(AppRoleRepository appRoleRepository) {
-        this.appRoleRepository = appRoleRepository;
-    }
 
     @Transactional(readOnly = true)
     public List<AppRole> findAll() {

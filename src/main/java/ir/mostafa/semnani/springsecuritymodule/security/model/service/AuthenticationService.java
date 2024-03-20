@@ -1,6 +1,5 @@
 package ir.mostafa.semnani.springsecuritymodule.security.model.service;
 
-import ir.mostafa.semnani.springsecuritymodule.security.model.AppUserDetailsService;
 import ir.mostafa.semnani.springsecuritymodule.security.model.dto.AuthenticationRequest;
 import ir.mostafa.semnani.springsecuritymodule.security.model.dto.AuthenticationResponse;
 import ir.mostafa.semnani.springsecuritymodule.security.model.dto.RegisterRequest;
@@ -24,8 +23,8 @@ public class AuthenticationService {
 
 
     public AuthenticationResponse authenticate(AuthenticationRequest request) {
-        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword()));
-        var user = userDetailsService.loadUserByUsername(request.getUsername());
+        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.username(), request.password()));
+        var user = userDetailsService.loadUserByUsername(request.username());
         var token = jwtService.generateToken(user);
         return AuthenticationResponse.builder()
                 .token(token)

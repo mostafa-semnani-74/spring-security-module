@@ -1,11 +1,9 @@
-package ir.mostafa.semnani.springsecuritymodule.security.model;
+package ir.mostafa.semnani.springsecuritymodule.security.model.service;
 
+import ir.mostafa.semnani.springsecuritymodule.security.model.AppUserDetails;
 import ir.mostafa.semnani.springsecuritymodule.security.model.entity.AppRole;
 import ir.mostafa.semnani.springsecuritymodule.security.model.entity.AppUser;
-import ir.mostafa.semnani.springsecuritymodule.security.model.service.AppPermissionService;
-import ir.mostafa.semnani.springsecuritymodule.security.model.service.AppRoleService;
-import ir.mostafa.semnani.springsecuritymodule.security.model.service.AppUserService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -18,17 +16,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 public class AppUserDetailsService implements UserDetailsService {
     private final AppUserService appUserService;
     private final AppRoleService appRoleService;
     private final AppPermissionService appPermissionService;
-
-    @Autowired
-    public AppUserDetailsService(AppUserService appUserService, AppRoleService appRoleService, AppPermissionService appPermissionService) {
-        this.appUserService = appUserService;
-        this.appRoleService = appRoleService;
-        this.appPermissionService = appPermissionService;
-    }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
