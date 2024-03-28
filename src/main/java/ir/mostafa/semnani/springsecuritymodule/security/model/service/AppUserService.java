@@ -4,25 +4,17 @@ import ir.mostafa.semnani.springsecuritymodule.security.model.dto.AppUserDTO;
 import ir.mostafa.semnani.springsecuritymodule.security.model.entity.AppUser;
 import ir.mostafa.semnani.springsecuritymodule.security.model.mapper.AppUserMapper;
 import ir.mostafa.semnani.springsecuritymodule.security.model.repository.AppUserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Set;
-
 
 @Service
 @Transactional
+@RequiredArgsConstructor
 public class AppUserService {
     private final AppUserRepository appUserRepository;
-    private final AppRoleService appRoleService;
-
-    @Autowired
-    public AppUserService(AppUserRepository appUserRepository, AppRoleService appRoleService) {
-        this.appUserRepository = appUserRepository;
-        this.appRoleService = appRoleService;
-    }
 
     @Transactional(readOnly = true)
     public List<AppUserDTO> findAll() {
@@ -38,11 +30,7 @@ public class AppUserService {
 
     public AppUserDTO save(AppUserDTO appUserDTO) {
         AppUser savedAppUser = appUserRepository.save(AppUserMapper.toEntity(appUserDTO));
-        if (appUserDTO.getRoles() != null && !appUserDTO.getRoles().isEmpty()) {
-            appUserDTO.getRoles().forEach(appRole -> appRole.setUsers(Set.of(savedAppUser)));
-            appRoleService.saveAll(appUserDTO.getRoles());
-        }
-        return appUserDTO;
+        return AppUserMapper.toDTO(savedAppUser);
     }
 
 }

@@ -1,6 +1,8 @@
 package ir.mostafa.semnani.springsecuritymodule.security.model.service;
 
+import ir.mostafa.semnani.springsecuritymodule.security.model.dto.AppRoleDTO;
 import ir.mostafa.semnani.springsecuritymodule.security.model.entity.AppRole;
+import ir.mostafa.semnani.springsecuritymodule.security.model.mapper.AppRoleMapper;
 import ir.mostafa.semnani.springsecuritymodule.security.model.repository.AppRoleRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -38,12 +40,17 @@ public class AppRoleService {
         return appRoles;
     }
 
-    public AppRole save(AppRole appRole) {
-        AppRole savedAppRole = appRoleRepository.save(appRole);
-        return appRole;
+    public AppRoleDTO save(AppRoleDTO appRoleDTO) {
+        AppRole savedAppRole = appRoleRepository.save(AppRoleMapper.toEntity(appRoleDTO));
+        return AppRoleMapper.toDTO(savedAppRole);
     }
 
     public List<AppRole> saveAll(Set<AppRole> roles) {
         return appRoleRepository.saveAll(roles);
     }
+
+    public void joinRoleToUser(Long roleId, Long userId) {
+        appRoleRepository.joinRoleToUser(roleId, userId);
+    }
+
 }

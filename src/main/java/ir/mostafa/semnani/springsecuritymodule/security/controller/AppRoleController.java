@@ -1,5 +1,6 @@
 package ir.mostafa.semnani.springsecuritymodule.security.controller;
 
+import ir.mostafa.semnani.springsecuritymodule.security.model.dto.AppRoleDTO;
 import ir.mostafa.semnani.springsecuritymodule.security.model.entity.AppRole;
 import ir.mostafa.semnani.springsecuritymodule.security.model.service.AppRoleService;
 import lombok.RequiredArgsConstructor;
@@ -24,7 +25,7 @@ public class AppRoleController {
 
     @PostMapping
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public ResponseEntity<AppRole> save(@RequestBody AppRole appRole) {
-        return new ResponseEntity<>(appRoleService.save(appRole), HttpStatus.CREATED);
+    public ResponseEntity<AppRoleDTO> save(@RequestBody AppRoleDTO appRoleDTO) {
+        return new ResponseEntity<>(appRoleService.save(appRoleDTO), HttpStatus.CREATED);
     }
 }

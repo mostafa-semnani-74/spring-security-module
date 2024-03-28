@@ -7,12 +7,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class AppUserMapper {
-    public static AppUser toEntity(AppUserDTO appUserDTO)  {
+    public static AppUser toEntity(AppUserDTO appUserDTO) {
         return AppUser.builder()
                 .id(appUserDTO.getId())
                 .username(appUserDTO.getUsername())
                 .password(appUserDTO.getPassword())
-                .roles(appUserDTO.getRoles())
                 .build();
     }
 
@@ -20,7 +19,6 @@ public class AppUserMapper {
         return AppUserDTO.builder()
                 .id(appUser.getId())
                 .username(appUser.getUsername())
-                .roles(appUser.getRoles())
                 .build();
     }
 

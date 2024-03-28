@@ -1,6 +1,5 @@
 package ir.mostafa.semnani.springsecuritymodule.security.model.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -25,6 +24,5 @@ public class AppUser {
     private String password;
 
     @ManyToMany(mappedBy = "users")
-    @JsonIgnore
     private Set<AppRole> roles;
 }

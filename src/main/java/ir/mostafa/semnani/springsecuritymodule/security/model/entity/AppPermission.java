@@ -1,6 +1,5 @@
 package ir.mostafa.semnani.springsecuritymodule.security.model.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import jakarta.persistence.*;
@@ -26,6 +25,5 @@ public class AppPermission {
             name = "roles_permissions",
             joinColumns = @JoinColumn(name = "app_permission_id"),
             inverseJoinColumns = @JoinColumn(name = "app_role_id"))
-    @JsonIgnore
     private Set<AppRole> appRoles;
 }

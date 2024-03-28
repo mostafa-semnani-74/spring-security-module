@@ -2,6 +2,7 @@ package ir.mostafa.semnani.springsecuritymodule.security.model.repository;
 
 import ir.mostafa.semnani.springsecuritymodule.security.model.entity.AppPermission;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -10,6 +11,16 @@ import java.util.List;
 
 @Repository
 public interface AppPermissionRepository extends JpaRepository<AppPermission, Long> {
-    @Query("SELECT ap FROM AppPermission ap JOIN FETCH ap.appRoles ar WHERE ar.id = :roleId")
+    @Query(value = "SELECT ap.* " +
+            " FROM tbl_app_permission ap " +
+            "   JOIN roles_permissions rp " +
+            "       ON ap.id = rp.app_permission_id " +
+            " WHERE rp.app_role_id = :roleId ",
+            nativeQuery = true)
     List<AppPermission> findByRoleId(@Param("roleId") Long roleId);
+
+    @Modifying
+    @Query(value = "INSERT INTO roles_permissions(app_permission_id, app_role_id) values (:permissionId, :roleId)",
+            nativeQuery = true)
+    void joinPermissionToRoleById(@Param("permissionId") Long permissionId, @Param("roleId") Long roleId);
 }

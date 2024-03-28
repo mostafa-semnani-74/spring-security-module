@@ -1,22 +1,20 @@
 package ir.mostafa.semnani.springsecuritymodule.security.model.service;
 
+import ir.mostafa.semnani.springsecuritymodule.security.model.dto.AppPermissionDTO;
 import ir.mostafa.semnani.springsecuritymodule.security.model.entity.AppPermission;
-import ir.mostafa.semnani.springsecuritymodule.security.model.entity.AppRole;
+import ir.mostafa.semnani.springsecuritymodule.security.model.mapper.AppPermissionMapper;
 import ir.mostafa.semnani.springsecuritymodule.security.model.repository.AppPermissionRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Set;
-
 
 @Service
 @Transactional
 @RequiredArgsConstructor
 public class AppPermissionService {
     private final AppPermissionRepository appPermissionRepository;
-    private final AppRoleService appRoleService;
 
     @Transactional(readOnly = true)
     public List<AppPermission> findAll() {
@@ -28,9 +26,11 @@ public class AppPermissionService {
         return appPermissionRepository.findByRoleId(roleId);
     }
 
-    public AppPermission save(AppPermission appPermission, Long roleId) {
-        AppRole appRole = appRoleService.findById(roleId);
-        appPermission.setAppRoles(Set.of(appRole));
-        return appPermissionRepository.save(appPermission);
+    public AppPermissionDTO save(AppPermissionDTO appPermissionDTO) {
+        return AppPermissionMapper.toDTO(appPermissionRepository.save(AppPermissionMapper.toEntity(appPermissionDTO)));
+    }
+
+    public void joinPermissionToRoleById(Long permissionId, Long roleId) {
+        appPermissionRepository.joinPermissionToRoleById(permissionId, roleId);
     }
 }

@@ -2,14 +2,19 @@ package ir.mostafa.semnani.springsecuritymodule.security.model;
 
 import ir.mostafa.semnani.springsecuritymodule.security.enums.AppUserPermission;
 import ir.mostafa.semnani.springsecuritymodule.security.enums.AppUserRole;
+import ir.mostafa.semnani.springsecuritymodule.security.model.dto.AppPermissionDTO;
+import ir.mostafa.semnani.springsecuritymodule.security.model.dto.AppRoleDTO;
 import ir.mostafa.semnani.springsecuritymodule.security.model.dto.AppUserDTO;
 import ir.mostafa.semnani.springsecuritymodule.security.model.entity.AppPermission;
 import ir.mostafa.semnani.springsecuritymodule.security.model.entity.AppRole;
+import ir.mostafa.semnani.springsecuritymodule.security.model.entity.AppUser;
+import ir.mostafa.semnani.springsecuritymodule.security.model.repository.AppPermissionRepository;
+import ir.mostafa.semnani.springsecuritymodule.security.model.repository.AppRoleRepository;
+import ir.mostafa.semnani.springsecuritymodule.security.model.repository.AppUserRepository;
 import ir.mostafa.semnani.springsecuritymodule.security.model.service.AppPermissionService;
 import ir.mostafa.semnani.springsecuritymodule.security.model.service.AppRoleService;
 import ir.mostafa.semnani.springsecuritymodule.security.model.service.AppUserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
@@ -28,49 +33,47 @@ public class SeedData implements CommandLineRunner {
     @Override
     public void run(String... args) {
         // create admin
-        AppUserDTO admin = new AppUserDTO();
-        admin.setUsername("admin");
-        admin.setPassword(passwordEncoder.encode("123"));
+        AppUserDTO adminDTO = new AppUserDTO();
+        adminDTO.setUsername("admin");
+        adminDTO.setPassword(passwordEncoder.encode("123"));
+        adminDTO = appUserService.save(adminDTO);
 
-        AppRole adminAppRole = new AppRole();
-        adminAppRole.setName("ROLE_" + AppUserRole.ADMIN.name());
-        admin.setRoles(Set.of(adminAppRole));
+        // create admin role
+        AppRoleDTO adminAppRoleDTO = AppRoleDTO.builder()
+                .name("ROLE_" + AppUserRole.ADMIN.name())
+                .build();
+        adminAppRoleDTO = appRoleService.save(adminAppRoleDTO);
 
-        appUserService.save(admin);
+        appRoleService.joinRoleToUser(adminAppRoleDTO.getId(), adminDTO.getId());
+
 
         // create user
-        AppUserDTO user = new AppUserDTO();
-        user.setUsername("user");
-        user.setPassword(passwordEncoder.encode("123"));
+        AppUserDTO userDTO = new AppUserDTO();
+        userDTO.setUsername("user");
+        userDTO.setPassword(passwordEncoder.encode("123"));
+        userDTO = appUserService.save(userDTO);
 
-        AppRole userAppRole = new AppRole();
-        userAppRole.setName("ROLE_" + AppUserRole.PERSON.name());
-        user.setRoles(Set.of(userAppRole));
+        // create user role
+        AppRoleDTO userAppRoleDTO = new AppRoleDTO();
+        userAppRoleDTO.setName("ROLE_" + AppUserRole.PERSON.name());
+        userAppRoleDTO = appRoleService.save(userAppRoleDTO);
 
-        appUserService.save(user);
+        appRoleService.joinRoleToUser(userAppRoleDTO.getId(), userDTO.getId());
 
-        List<AppRole> appRoles = appRoleService.findAll();
-        for (AppRole appRole : appRoles) {
-            if (appRole.getName().equals(adminAppRole.getName()))
-                adminAppRole.setId(appRole.getId());
-            else if (appRole.getName().equals(userAppRole.getName()))
-                userAppRole.setId(appRole.getId());
-        }
 
-        // create person read permission for person
-        AppPermission personReadUser = new AppPermission();
-        personReadUser.setName(AppUserPermission.PERSON_READ.getPermission());
-        appPermissionService.save(personReadUser, userAppRole.getId());
+        // create person read permission
+        AppPermissionDTO personReadDTO = new AppPermissionDTO();
+        personReadDTO.setName(AppUserPermission.PERSON_READ.getPermission());
+        personReadDTO = appPermissionService.save(personReadDTO);
 
-        // create person read permission for admin
-        AppPermission personRead = new AppPermission();
-        personRead.setName(AppUserPermission.PERSON_READ.getPermission());
-        appPermissionService.save(personRead, adminAppRole.getId());
+        appPermissionService.joinPermissionToRoleById(personReadDTO.getId(), adminAppRoleDTO.getId());
+        appPermissionService.joinPermissionToRoleById(personReadDTO.getId(), userAppRoleDTO.getId());
 
-        // create person write permission for admin
-        AppPermission personWrite = new AppPermission();
-        personWrite.setName(AppUserPermission.PERSON_WRITE.getPermission());
-        appPermissionService.save(personWrite, adminAppRole.getId());
+        // create person write permission
+        AppPermissionDTO personWriteDTO = new AppPermissionDTO();
+        personWriteDTO.setName(AppUserPermission.PERSON_WRITE.getPermission());
+        personWriteDTO = appPermissionService.save(personWriteDTO);
 
+        appPermissionService.joinPermissionToRoleById(personWriteDTO.getId(), adminAppRoleDTO.getId());
     }
 }
