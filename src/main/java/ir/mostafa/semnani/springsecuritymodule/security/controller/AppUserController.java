@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -24,7 +25,7 @@ public class AppUserController {
 
     @PostMapping
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public ResponseEntity<AppUserDTO> save(@RequestBody AppUserDTO appUserDTO) {
+    public ResponseEntity<AppUserDTO> save(@Valid @RequestBody AppUserDTO appUserDTO) {
         return new ResponseEntity<>(appUserService.save(appUserDTO), HttpStatus.CREATED);
     }
 
