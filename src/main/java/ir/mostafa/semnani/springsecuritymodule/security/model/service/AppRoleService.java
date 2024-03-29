@@ -20,9 +20,9 @@ public class AppRoleService {
     private final AppRoleRepository appRoleRepository;
 
     @Transactional(readOnly = true)
-    public List<AppRole> findAll() {
+    public List<AppRoleDTO> findAll() {
         List<AppRole> appRoles = appRoleRepository.findAll();
-        return appRoles;
+        return AppRoleMapper.toDTOs(appRoles);
     }
 
     @Transactional(readOnly = true)

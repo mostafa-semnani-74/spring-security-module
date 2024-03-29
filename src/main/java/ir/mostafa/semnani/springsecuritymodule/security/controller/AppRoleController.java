@@ -1,7 +1,6 @@
 package ir.mostafa.semnani.springsecuritymodule.security.controller;
 
 import ir.mostafa.semnani.springsecuritymodule.security.model.dto.AppRoleDTO;
-import ir.mostafa.semnani.springsecuritymodule.security.model.entity.AppRole;
 import ir.mostafa.semnani.springsecuritymodule.security.model.service.AppRoleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -19,7 +18,7 @@ public class AppRoleController {
 
     @GetMapping
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public ResponseEntity<List<AppRole>> findAll() {
+    public ResponseEntity<List<AppRoleDTO>> findAll() {
         return ResponseEntity.ok(appRoleService.findAll());
     }
 

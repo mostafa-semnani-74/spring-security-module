@@ -4,6 +4,9 @@ import ir.mostafa.semnani.springsecuritymodule.security.model.dto.AppRoleDTO;
 import ir.mostafa.semnani.springsecuritymodule.security.model.dto.AppUserRolesDTO;
 import ir.mostafa.semnani.springsecuritymodule.security.model.entity.AppRole;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class AppRoleMapper {
     public static AppRoleDTO toDTO(AppRole appRole) {
         return AppRoleDTO.builder()
@@ -24,6 +27,12 @@ public class AppRoleMapper {
                 .id(appRoleDTO.getId())
                 .name(appRoleDTO.getName())
                 .build();
+    }
+
+    public static List<AppRoleDTO> toDTOs(List<AppRole> appRoles) {
+        return appRoles.stream()
+                .map(AppRoleMapper::toDTO)
+                .collect(Collectors.toList());
     }
 
 }
