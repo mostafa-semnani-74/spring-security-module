@@ -17,8 +17,8 @@ public class AppPermissionService {
     private final AppPermissionRepository appPermissionRepository;
 
     @Transactional(readOnly = true)
-    public List<AppPermission> findAll() {
-        return appPermissionRepository.findAll();
+    public List<AppPermissionDTO> findAll() {
+        return AppPermissionMapper.toDTOs(appPermissionRepository.findAll());
     }
 
     @Transactional(readOnly = true)

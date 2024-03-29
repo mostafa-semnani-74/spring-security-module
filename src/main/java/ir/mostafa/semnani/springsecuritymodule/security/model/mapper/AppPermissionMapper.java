@@ -3,6 +3,9 @@ package ir.mostafa.semnani.springsecuritymodule.security.model.mapper;
 import ir.mostafa.semnani.springsecuritymodule.security.model.dto.AppPermissionDTO;
 import ir.mostafa.semnani.springsecuritymodule.security.model.entity.AppPermission;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class AppPermissionMapper {
     public static AppPermission toEntity(AppPermissionDTO appPermissionDTO) {
         return AppPermission.builder()
@@ -16,6 +19,12 @@ public class AppPermissionMapper {
                 .id(appPermission.getId())
                 .name(appPermission.getName())
                 .build();
+    }
+
+    public static List<AppPermissionDTO> toDTOs(List<AppPermission> appPermissions) {
+        return appPermissions.stream()
+                .map(AppPermissionMapper::toDTO)
+                .collect(Collectors.toList());
     }
 
 }
