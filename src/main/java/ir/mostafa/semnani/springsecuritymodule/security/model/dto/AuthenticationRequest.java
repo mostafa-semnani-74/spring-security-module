@@ -1,5 +1,11 @@
 package ir.mostafa.semnani.springsecuritymodule.security.model.dto;
 
-public record AuthenticationRequest(String username,
-                                    String password) {
+import jakarta.validation.constraints.NotNull;
+
+public record AuthenticationRequest(
+        @NotNull
+        String username,
+        @NotNull
+        String password
+) {
 }
