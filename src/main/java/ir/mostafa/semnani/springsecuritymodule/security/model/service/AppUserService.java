@@ -5,6 +5,7 @@ import ir.mostafa.semnani.springsecuritymodule.security.model.entity.AppUser;
 import ir.mostafa.semnani.springsecuritymodule.security.model.mapper.AppUserMapper;
 import ir.mostafa.semnani.springsecuritymodule.security.model.repository.AppUserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,7 +28,7 @@ public class AppUserService {
     @Transactional(readOnly = true)
     public AppUser findByUsername(String username) {
         return appUserRepository.findByUsername(username)
-                .orElseThrow(() -> new RuntimeException("User not found"));
+                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
     }
 
     public AppUserDTO save(AppUserDTO appUserDTO) {

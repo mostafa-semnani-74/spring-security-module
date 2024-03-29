@@ -17,8 +17,8 @@ public class AuthenticationService {
     private final JwtService jwtService;
 
     public AuthenticationResponse authenticate(AuthenticationRequest request) {
-        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.username(), request.password()));
         var user = userDetailsService.loadUserByUsername(request.username());
+        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.username(), request.password()));
         var token = jwtService.generateToken(user);
         log.info("user with username: {} successfully authenticated and has authorities: {}",
                 user.getUsername(), user.getAuthorities());
