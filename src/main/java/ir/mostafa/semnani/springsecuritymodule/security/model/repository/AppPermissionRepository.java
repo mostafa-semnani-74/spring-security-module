@@ -18,9 +18,4 @@ public interface AppPermissionRepository extends JpaRepository<AppPermission, Lo
             " WHERE rp.app_role_id = :roleId ",
             nativeQuery = true)
     List<AppPermission> findByRoleId(@Param("roleId") Long roleId);
-
-    @Modifying
-    @Query(value = "INSERT INTO roles_permissions(app_permission_id, app_role_id) values (:permissionId, :roleId)",
-            nativeQuery = true)
-    void joinPermissionToRoleById(@Param("permissionId") Long permissionId, @Param("roleId") Long roleId);
 }

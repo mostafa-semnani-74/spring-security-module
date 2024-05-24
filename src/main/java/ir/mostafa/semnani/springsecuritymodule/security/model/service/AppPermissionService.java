@@ -29,8 +29,4 @@ public class AppPermissionService {
     public AppPermissionDTO save(AppPermissionDTO appPermissionDTO) {
         return AppPermissionMapper.toDTO(appPermissionRepository.save(AppPermissionMapper.toEntity(appPermissionDTO)));
     }
-
-    public void joinPermissionToRoleById(Long permissionId, Long roleId) {
-        appPermissionRepository.joinPermissionToRoleById(permissionId, roleId);
-    }
 }

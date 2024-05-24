@@ -18,10 +18,4 @@ public interface AppRoleRepository extends JpaRepository<AppRole, Long> {
             " WHERE u.app_user_id = :userId ",
             nativeQuery = true)
     List<AppRole> findByUserId(@Param("userId") Long userId);
-
-    @Modifying
-    @Query(value = "INSERT INTO users_roles(app_role_id, app_user_id) " +
-            " values (:roleId, :userId) ",
-            nativeQuery = true)
-    void joinRoleToUser(@Param("roleId") Long roleId, @Param("userId") Long userId);
 }

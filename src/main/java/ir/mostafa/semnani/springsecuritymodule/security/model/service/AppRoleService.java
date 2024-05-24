@@ -45,12 +45,4 @@ public class AppRoleService {
         return AppRoleMapper.toDTO(savedAppRole);
     }
 
-    public List<AppRole> saveAll(Set<AppRole> roles) {
-        return appRoleRepository.saveAll(roles);
-    }
-
-    public void joinRoleToUser(Long roleId, Long userId) {
-        appRoleRepository.joinRoleToUser(roleId, userId);
-    }
-
 }
