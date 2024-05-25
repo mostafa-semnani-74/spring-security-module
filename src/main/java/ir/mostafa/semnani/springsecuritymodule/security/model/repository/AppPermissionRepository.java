@@ -11,11 +11,11 @@ import java.util.List;
 
 @Repository
 public interface AppPermissionRepository extends JpaRepository<AppPermission, Long> {
-    @Query(value = "SELECT ap.* " +
-            " FROM tbl_app_permission ap " +
-            "   JOIN roles_permissions rp " +
-            "       ON ap.id = rp.app_permission_id " +
-            " WHERE rp.app_role_id = :roleId ",
-            nativeQuery = true)
+
+    @Query(value = "SELECT ap " +
+            " FROM AppPermission ap " +
+            "   JOIN FETCH ap.appRoles ar " +
+            " WHERE ar.id = :roleId ")
     List<AppPermission> findByRoleId(@Param("roleId") Long roleId);
+
 }

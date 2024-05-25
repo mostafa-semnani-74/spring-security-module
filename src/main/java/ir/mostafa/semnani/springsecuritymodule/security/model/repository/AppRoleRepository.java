@@ -11,11 +11,11 @@ import java.util.List;
 
 @Repository
 public interface AppRoleRepository extends JpaRepository<AppRole, Long> {
-    @Query(value = "SELECT ar.* " +
-            " FROM tbl_app_role ar " +
-            "   JOIN users_roles u " +
-            "       ON ar.id = u.app_role_id " +
-            " WHERE u.app_user_id = :userId ",
-            nativeQuery = true)
+
+    @Query(value = "SELECT ar " +
+            " FROM AppRole ar " +
+            "   JOIN FETCH ar.users u " +
+            " WHERE u.id = :userId ")
     List<AppRole> findByUserId(@Param("userId") Long userId);
+
 }
