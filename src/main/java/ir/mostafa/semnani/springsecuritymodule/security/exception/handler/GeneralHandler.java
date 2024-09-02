@@ -1,4 +1,4 @@
-package ir.mostafa.semnani.springsecuritymodule.security.exception.controller;
+package ir.mostafa.semnani.springsecuritymodule.security.exception.handler;
 
 import ir.mostafa.semnani.springsecuritymodule.security.exception.common.ExceptionDetails;
 import org.springframework.http.HttpStatus;
@@ -21,8 +21,8 @@ public class GeneralHandler {
                         sdf.format(new Date()),
                         "username or password is wrong",
                         ""
-                )
-                , HttpStatus.UNAUTHORIZED);
+                ),
+                HttpStatus.UNAUTHORIZED);
     }
 
 }

@@ -1,4 +1,4 @@
-package ir.mostafa.semnani.springsecuritymodule.security.exception.controller;
+package ir.mostafa.semnani.springsecuritymodule.security.exception.handler;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -30,15 +30,15 @@ public class ValidationHandler extends ResponseEntityExceptionHandler {
                                                                   HttpStatusCode status,
                                                                   WebRequest request) {
         Map<String, String> errors = new HashMap<>();
-        ex.getBindingResult().getAllErrors().forEach((error) -> {
-
-            String fieldName = ((FieldError) error).getField();
-            String message = error.getDefaultMessage();
-            errors.put(fieldName, message);
-        });
+        ex.getBindingResult().getAllErrors().forEach(
+                (error) -> {
+                    String fieldName = ((FieldError) error).getField();
+                    String message = error.getDefaultMessage();
+                    errors.put(fieldName, message);
+                });
 
         SimpleDateFormat sdf = new SimpleDateFormat("MMM dd,yyyy HH:mm");
-        ExceptionDetails exceptionDetails = null;
+        ExceptionDetails exceptionDetails;
         try {
             exceptionDetails = new ExceptionDetails(sdf.format(new Date()),
                     "please check the fields",
