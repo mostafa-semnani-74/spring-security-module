@@ -1,6 +1,6 @@
 package ir.mostafa.semnani.springsecuritymodule.security.model.service;
 
-import ir.mostafa.semnani.springsecuritymodule.security.model.AppUserDetails;
+import ir.mostafa.semnani.springsecuritymodule.security.model.dto.AppUserDetails;
 import ir.mostafa.semnani.springsecuritymodule.security.model.entity.AppRole;
 import ir.mostafa.semnani.springsecuritymodule.security.model.entity.AppUser;
 import lombok.RequiredArgsConstructor;
