@@ -1,5 +1,6 @@
-package ir.mostafa.semnani.springsecuritymodule.security.model.dto;
+package ir.mostafa.semnani.springsecuritymodule.security.dto;
 
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -9,7 +10,8 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class AppRoleDTO {
+public class AppPermissionDTO {
     private Long id;
+    @NotNull
     private String name;
 }

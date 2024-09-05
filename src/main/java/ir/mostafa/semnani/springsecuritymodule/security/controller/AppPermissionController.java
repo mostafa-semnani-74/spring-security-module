@@ -1,7 +1,7 @@
 package ir.mostafa.semnani.springsecuritymodule.security.controller;
 
-import ir.mostafa.semnani.springsecuritymodule.security.model.dto.AppPermissionDTO;
-import ir.mostafa.semnani.springsecuritymodule.security.model.service.AppPermissionService;
+import ir.mostafa.semnani.springsecuritymodule.security.dto.AppPermissionDTO;
+import ir.mostafa.semnani.springsecuritymodule.security.service.AppPermissionService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

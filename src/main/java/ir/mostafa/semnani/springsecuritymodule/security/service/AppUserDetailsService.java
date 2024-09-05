@@ -1,8 +1,8 @@
-package ir.mostafa.semnani.springsecuritymodule.security.model.service;
+package ir.mostafa.semnani.springsecuritymodule.security.service;
 
-import ir.mostafa.semnani.springsecuritymodule.security.model.dto.AppUserDetails;
-import ir.mostafa.semnani.springsecuritymodule.security.model.entity.AppRole;
-import ir.mostafa.semnani.springsecuritymodule.security.model.entity.AppUser;
+import ir.mostafa.semnani.springsecuritymodule.security.dto.AppUserDetails;
+import ir.mostafa.semnani.springsecuritymodule.security.entity.AppRole;
+import ir.mostafa.semnani.springsecuritymodule.security.entity.AppUser;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

@@ -1,4 +1,4 @@
-package ir.mostafa.semnani.springsecuritymodule.security.model.entity;
+package ir.mostafa.semnani.springsecuritymodule.security.entity;
 
 import jakarta.persistence.*;
 import lombok.*;

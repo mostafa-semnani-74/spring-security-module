@@ -1,8 +1,8 @@
-package ir.mostafa.semnani.springsecuritymodule.security.model.mapper;
+package ir.mostafa.semnani.springsecuritymodule.security.mapper;
 
-import ir.mostafa.semnani.springsecuritymodule.security.model.dto.AppRoleDTO;
-import ir.mostafa.semnani.springsecuritymodule.security.model.dto.AppUserRolesDTO;
-import ir.mostafa.semnani.springsecuritymodule.security.model.entity.AppRole;
+import ir.mostafa.semnani.springsecuritymodule.security.dto.AppRoleDTO;
+import ir.mostafa.semnani.springsecuritymodule.security.dto.AppUserRolesDTO;
+import ir.mostafa.semnani.springsecuritymodule.security.entity.AppRole;
 
 import java.util.List;
 import java.util.stream.Collectors;

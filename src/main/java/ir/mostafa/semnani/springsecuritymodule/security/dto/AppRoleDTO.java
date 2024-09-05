@@ -1,4 +1,4 @@
-package ir.mostafa.semnani.springsecuritymodule.security.model.dto;
+package ir.mostafa.semnani.springsecuritymodule.security.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class AuthenticationResponse {
-    private String token;
+public class AppRoleDTO {
+    private Long id;
+    private String name;
 }

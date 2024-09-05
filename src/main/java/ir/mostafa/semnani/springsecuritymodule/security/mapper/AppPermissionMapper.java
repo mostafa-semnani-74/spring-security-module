@@ -1,7 +1,7 @@
-package ir.mostafa.semnani.springsecuritymodule.security.model.mapper;
+package ir.mostafa.semnani.springsecuritymodule.security.mapper;
 
-import ir.mostafa.semnani.springsecuritymodule.security.model.dto.AppPermissionDTO;
-import ir.mostafa.semnani.springsecuritymodule.security.model.entity.AppPermission;
+import ir.mostafa.semnani.springsecuritymodule.security.dto.AppPermissionDTO;
+import ir.mostafa.semnani.springsecuritymodule.security.entity.AppPermission;
 
 import java.util.List;
 import java.util.stream.Collectors;

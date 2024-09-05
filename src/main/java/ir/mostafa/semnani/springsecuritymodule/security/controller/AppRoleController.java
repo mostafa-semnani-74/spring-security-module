@@ -1,7 +1,7 @@
 package ir.mostafa.semnani.springsecuritymodule.security.controller;
 
-import ir.mostafa.semnani.springsecuritymodule.security.model.dto.AppRoleDTO;
-import ir.mostafa.semnani.springsecuritymodule.security.model.service.AppRoleService;
+import ir.mostafa.semnani.springsecuritymodule.security.dto.AppRoleDTO;
+import ir.mostafa.semnani.springsecuritymodule.security.service.AppRoleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

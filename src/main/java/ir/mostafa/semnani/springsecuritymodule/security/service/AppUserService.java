@@ -1,9 +1,9 @@
-package ir.mostafa.semnani.springsecuritymodule.security.model.service;
+package ir.mostafa.semnani.springsecuritymodule.security.service;
 
-import ir.mostafa.semnani.springsecuritymodule.security.model.dto.AppUserDTO;
-import ir.mostafa.semnani.springsecuritymodule.security.model.entity.AppUser;
-import ir.mostafa.semnani.springsecuritymodule.security.model.mapper.AppUserMapper;
-import ir.mostafa.semnani.springsecuritymodule.security.model.repository.AppUserRepository;
+import ir.mostafa.semnani.springsecuritymodule.security.dto.AppUserDTO;
+import ir.mostafa.semnani.springsecuritymodule.security.entity.AppUser;
+import ir.mostafa.semnani.springsecuritymodule.security.mapper.AppUserMapper;
+import ir.mostafa.semnani.springsecuritymodule.security.repository.AppUserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;

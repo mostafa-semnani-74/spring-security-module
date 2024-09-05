@@ -1,7 +1,7 @@
 package ir.mostafa.semnani.springsecuritymodule.security.config;
 
 import ir.mostafa.semnani.springsecuritymodule.security.filter.JwtAuthenticationFilter;
-import ir.mostafa.semnani.springsecuritymodule.security.model.service.AppUserDetailsService;
+import ir.mostafa.semnani.springsecuritymodule.security.service.AppUserDetailsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

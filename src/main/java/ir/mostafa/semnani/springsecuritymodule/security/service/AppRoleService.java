@@ -1,16 +1,15 @@
-package ir.mostafa.semnani.springsecuritymodule.security.model.service;
+package ir.mostafa.semnani.springsecuritymodule.security.service;
 
-import ir.mostafa.semnani.springsecuritymodule.security.model.dto.AppRoleDTO;
-import ir.mostafa.semnani.springsecuritymodule.security.model.entity.AppRole;
-import ir.mostafa.semnani.springsecuritymodule.security.model.mapper.AppRoleMapper;
-import ir.mostafa.semnani.springsecuritymodule.security.model.repository.AppRoleRepository;
+import ir.mostafa.semnani.springsecuritymodule.security.dto.AppRoleDTO;
+import ir.mostafa.semnani.springsecuritymodule.security.entity.AppRole;
+import ir.mostafa.semnani.springsecuritymodule.security.mapper.AppRoleMapper;
+import ir.mostafa.semnani.springsecuritymodule.security.repository.AppRoleRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 
 @Service

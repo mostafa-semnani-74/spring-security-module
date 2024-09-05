@@ -1,7 +1,7 @@
-package ir.mostafa.semnani.springsecuritymodule.security.model.mapper;
+package ir.mostafa.semnani.springsecuritymodule.security.mapper;
 
-import ir.mostafa.semnani.springsecuritymodule.security.model.dto.AppUserDTO;
-import ir.mostafa.semnani.springsecuritymodule.security.model.entity.AppUser;
+import ir.mostafa.semnani.springsecuritymodule.security.dto.AppUserDTO;
+import ir.mostafa.semnani.springsecuritymodule.security.entity.AppUser;
 
 import java.util.List;
 import java.util.stream.Collectors;

@@ -1,8 +1,8 @@
 package ir.mostafa.semnani.springsecuritymodule.security.controller;
 
-import ir.mostafa.semnani.springsecuritymodule.security.model.dto.AuthenticationRequest;
-import ir.mostafa.semnani.springsecuritymodule.security.model.dto.AuthenticationResponse;
-import ir.mostafa.semnani.springsecuritymodule.security.model.service.AuthenticationService;
+import ir.mostafa.semnani.springsecuritymodule.security.dto.AuthenticationRequest;
+import ir.mostafa.semnani.springsecuritymodule.security.dto.AuthenticationResponse;
+import ir.mostafa.semnani.springsecuritymodule.security.service.AuthenticationService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

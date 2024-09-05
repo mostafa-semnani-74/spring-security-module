@@ -1,4 +1,4 @@
-package ir.mostafa.semnani.springsecuritymodule.security.model.service;
+package ir.mostafa.semnani.springsecuritymodule.security.service;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

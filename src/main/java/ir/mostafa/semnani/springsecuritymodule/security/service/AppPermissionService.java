@@ -1,9 +1,9 @@
-package ir.mostafa.semnani.springsecuritymodule.security.model.service;
+package ir.mostafa.semnani.springsecuritymodule.security.service;
 
-import ir.mostafa.semnani.springsecuritymodule.security.model.dto.AppPermissionDTO;
-import ir.mostafa.semnani.springsecuritymodule.security.model.entity.AppPermission;
-import ir.mostafa.semnani.springsecuritymodule.security.model.mapper.AppPermissionMapper;
-import ir.mostafa.semnani.springsecuritymodule.security.model.repository.AppPermissionRepository;
+import ir.mostafa.semnani.springsecuritymodule.security.dto.AppPermissionDTO;
+import ir.mostafa.semnani.springsecuritymodule.security.entity.AppPermission;
+import ir.mostafa.semnani.springsecuritymodule.security.mapper.AppPermissionMapper;
+import ir.mostafa.semnani.springsecuritymodule.security.repository.AppPermissionRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

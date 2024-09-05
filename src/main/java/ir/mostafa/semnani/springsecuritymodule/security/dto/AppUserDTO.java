@@ -1,4 +1,4 @@
-package ir.mostafa.semnani.springsecuritymodule.security.model.dto;
+package ir.mostafa.semnani.springsecuritymodule.security.dto;
 
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;

@@ -1,7 +1,7 @@
-package ir.mostafa.semnani.springsecuritymodule.security.model.service;
+package ir.mostafa.semnani.springsecuritymodule.security.service;
 
-import ir.mostafa.semnani.springsecuritymodule.security.model.dto.AuthenticationRequest;
-import ir.mostafa.semnani.springsecuritymodule.security.model.dto.AuthenticationResponse;
+import ir.mostafa.semnani.springsecuritymodule.security.dto.AuthenticationRequest;
+import ir.mostafa.semnani.springsecuritymodule.security.dto.AuthenticationResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.AuthenticationManager;
