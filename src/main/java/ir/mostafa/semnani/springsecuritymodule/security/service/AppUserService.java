@@ -17,12 +17,15 @@ import java.util.List;
 @RequiredArgsConstructor
 public class AppUserService {
     private final AppUserRepository appUserRepository;
+
     private final PasswordEncoder passwordEncoder;
+
+    private final AppUserMapper appUserMapper;
 
     @Transactional(readOnly = true)
     public List<AppUserDTO> findAll() {
         List<AppUser> appUsers = appUserRepository.findAll();
-        return AppUserMapper.toDTOs(appUsers);
+        return appUserMapper.toDTOs(appUsers);
     }
 
     @Transactional(readOnly = true)
@@ -33,8 +36,8 @@ public class AppUserService {
 
     public AppUserDTO save(AppUserDTO appUserDTO) {
         appUserDTO.setPassword(passwordEncoder.encode(appUserDTO.getPassword()));
-        AppUser savedAppUser = appUserRepository.save(AppUserMapper.toEntity(appUserDTO));
-        return AppUserMapper.toDTO(savedAppUser);
+        AppUser savedAppUser = appUserRepository.save(appUserMapper.toEntity(appUserDTO));
+        return appUserMapper.toDTO(savedAppUser);
     }
 
 }

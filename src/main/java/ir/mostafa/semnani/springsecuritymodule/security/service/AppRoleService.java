@@ -17,11 +17,12 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class AppRoleService {
     private final AppRoleRepository appRoleRepository;
+    private final AppRoleMapper appRoleMapper;
 
     @Transactional(readOnly = true)
     public List<AppRoleDTO> findAll() {
         List<AppRole> appRoles = appRoleRepository.findAll();
-        return AppRoleMapper.toDTOs(appRoles);
+        return appRoleMapper.toDTOs(appRoles);
     }
 
     @Transactional(readOnly = true)
@@ -40,8 +41,8 @@ public class AppRoleService {
     }
 
     public AppRoleDTO save(AppRoleDTO appRoleDTO) {
-        AppRole savedAppRole = appRoleRepository.save(AppRoleMapper.toEntity(appRoleDTO));
-        return AppRoleMapper.toDTO(savedAppRole);
+        AppRole savedAppRole = appRoleRepository.save(appRoleMapper.toEntity(appRoleDTO));
+        return appRoleMapper.toDTO(savedAppRole);
     }
 
 }

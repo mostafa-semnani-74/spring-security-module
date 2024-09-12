@@ -16,9 +16,11 @@ import java.util.List;
 public class AppPermissionService {
     private final AppPermissionRepository appPermissionRepository;
 
+    private final AppPermissionMapper appPermissionMapper;
+
     @Transactional(readOnly = true)
     public List<AppPermissionDTO> findAll() {
-        return AppPermissionMapper.toDTOs(appPermissionRepository.findAll());
+        return appPermissionMapper.toDTOs(appPermissionRepository.findAll());
     }
 
     @Transactional(readOnly = true)
@@ -27,6 +29,6 @@ public class AppPermissionService {
     }
 
     public AppPermissionDTO save(AppPermissionDTO appPermissionDTO) {
-        return AppPermissionMapper.toDTO(appPermissionRepository.save(AppPermissionMapper.toEntity(appPermissionDTO)));
+        return appPermissionMapper.toDTO(appPermissionRepository.save(appPermissionMapper.toEntity(appPermissionDTO)));
     }
 }
